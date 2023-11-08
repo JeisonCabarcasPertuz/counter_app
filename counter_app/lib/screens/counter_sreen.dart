@@ -73,14 +73,17 @@ class CustomFloatButtoms extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         FloatingActionButton(
+          backgroundColor: const Color.fromARGB(255, 70, 66, 54),
           child: const Icon(Icons.plus_one),
           onPressed: ()=> incrementar()),
    
         FloatingActionButton(
+          backgroundColor: const Color.fromARGB(255, 70, 66, 54),
           child: const Icon(Icons.restore),
           onPressed: ()=> resetToCero()),
 
         FloatingActionButton(
+          backgroundColor: const Color.fromARGB(255, 70, 66, 54),
           child: const Icon(Icons.exposure_minus_1),
           onPressed: ()=>decrementar())
       ],
