@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 
 class CounterScreen extends StatefulWidget{
@@ -11,6 +11,24 @@ class CounterScreen extends StatefulWidget{
 class _CounterScreenState extends State<CounterScreen> {
 
   int counter = 0;
+
+  void incrementar(){
+    counter++;
+    setState(() {
+    });
+  }
+
+  void decrementar (){
+    counter--;
+    setState(() {
+    });
+  }
+
+    void resetToCero (){
+    counter=0;;
+    setState(() {
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,46 +49,41 @@ class _CounterScreenState extends State<CounterScreen> {
           ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            child: const Icon(Icons.plus_one),
-            onPressed: (){
-            counter++;
-            setState(() {
-              
-            });
-            if (kDebugMode) {
-              print("Sumando 1");
-            }
-          }),
-   
-          FloatingActionButton(
-            child: const Icon(Icons.restore),
-            onPressed: (){
-            counter=0;
-            setState(() {
-              
-            });
-            if (kDebugMode) {
-              print("reset");
-            }
-          }),
-
-          FloatingActionButton(
-            child: const Icon(Icons.exposure_minus_1),
-            onPressed: (){
-            counter--;
-            setState(() {
-              
-            });
-            if (kDebugMode) {
-              print("restando 1");
-            }
-          })
-        ],
+      floatingActionButton: CustomFloatButtoms(
+        incrementar: incrementar,
+        decrementar: decrementar,
+        resetToCero: resetToCero,
       ),
+    );
+  }
+}
+
+class CustomFloatButtoms extends StatelessWidget {
+
+  final Function incrementar;
+  final Function decrementar;
+  final Function resetToCero;
+  const CustomFloatButtoms({
+    super.key, required this.incrementar, required this.decrementar, required this.resetToCero,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        FloatingActionButton(
+          child: const Icon(Icons.plus_one),
+          onPressed: ()=> incrementar()),
+   
+        FloatingActionButton(
+          child: const Icon(Icons.restore),
+          onPressed: ()=> resetToCero()),
+
+        FloatingActionButton(
+          child: const Icon(Icons.exposure_minus_1),
+          onPressed: ()=>decrementar())
+      ],
     );
   }
 }
